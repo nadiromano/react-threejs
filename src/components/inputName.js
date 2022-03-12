@@ -1,13 +1,17 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { login } from '../state/userSlice';
 
 function NameInput() {
   const [name, setName] = useState('');
   const redirectToCanvas = useHistory();
 
+  const dispatch = useDispatch();
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    const nameSelected = name;
+    dispatch(login(name));
     redirectToCanvas.push('/canvas3d');
     console.log(name);
   };

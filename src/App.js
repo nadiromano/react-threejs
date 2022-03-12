@@ -12,7 +12,7 @@ export default function App() {
         <Route exact path="/">
           <NameInput />
         </Route>
-        <Route path="/canvas3d/:id">
+        <Route path="/canvas3d">
           <Canvas3d />
         </Route>
       </Switch>

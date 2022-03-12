@@ -4,6 +4,8 @@ import '../App.scss';
 import { Canvas } from 'react-three-fiber';
 
 import { useGLTFLoader, OrbitControls, Html } from 'drei';
+import { selecUser } from '../state/userSlice';
+import { useSelector } from 'react-redux';
 
 const Car = () => {
   const gltf = useGLTFLoader('/scene.gltf', true);
@@ -11,9 +13,7 @@ const Car = () => {
   return <primitive object={gltf.scene} dispose={null} />;
 };
 
-const personaggio = 'manolo';
-
-const HtmlContent = (id) => {
+const HtmlContent = (user) => {
   return (
     <group position={[0, 0, 0]}>
       <mesh position={[30, -5, 0]} scale={[12, 12, 12]}>
@@ -22,7 +22,7 @@ const HtmlContent = (id) => {
       <mesh position={[35, 18 - 0]}>
         <Html fullscreen>
           <div className="container">
-            <h1 className="name">{personaggio}</h1>
+            <h1 className="name">{user}</h1>
           </div>
         </Html>
       </mesh>
@@ -45,6 +45,9 @@ const Lights = () => {
 };
 
 export default function Canvas3d() {
+  const user = useSelector(selecUser);
+  console.log(user);
+
   return (
     <>
       <Canvas
@@ -59,7 +62,18 @@ export default function Canvas3d() {
             <mesh scale={[2, 2, 2]}>
               <Car />
             </mesh>
-            <HtmlContent />
+            <group position={[0, 0, 0]}>
+              <mesh position={[30, -5, 0]} scale={[12, 12, 12]}>
+                <Woman />
+              </mesh>
+              <mesh position={[35, 18 - 0]}>
+                <Html fullscreen>
+                  <div className="container">
+                    <h1 className="name">{user}</h1>
+                  </div>
+                </Html>
+              </mesh>
+            </group>
           </group>
         </Suspense>
       </Canvas>
