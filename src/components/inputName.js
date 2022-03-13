@@ -19,11 +19,14 @@ function NameInput() {
   return (
     <div className="form-name-container">
       <form className="form-name" onSubmit={handleSubmit}>
-        <label className="label-name">Scegli il nome del tuo personaggio</label>
+        <h4 className="label-span">
+          Una donna del 1460 sta per essere catapultata nel futuro
+        </h4>
+
         <input
           className="input-name"
           type="text"
-          placeholder="Your Name"
+          placeholder="Scegli il nome del tuo personaggio"
           required
           value={name}
           onChange={(e) => setName(e.target.value)}

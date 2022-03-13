@@ -32,23 +32,6 @@ body,
   justify-content: center;
 }
 
-header {
-  position: absolute;
-  z-index: 99;
-  width: 100%;
-  padding: 60px;
-  .header-inner {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    .logo {
-      font-weight: 900;
-      letter-spacing: 2px;
-      color: #fff;
-    }
-  }
-}
-
 .name {
   font-size: 1rem;
   font-weight: 800;
@@ -73,6 +56,16 @@ header {
 }
 
 .label-name {
+  text-align: center;
+  font-size: 14px;
+}
+
+.label-span {
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-bottom: 0;
 }
 
 .input-name {
@@ -81,6 +74,9 @@ header {
   border: none;
   box-shadow: 5px 6px 9px rgba(34, 73, 0, 0.12);
   padding: 0 15px;
+  animation: inputFocus 1s ease-in-out 1s 3;
+  opacity: 100%;
+  transition: all 1s;
 }
 
 .form-name-button {
@@ -105,7 +101,7 @@ header {
 .icon3d {
   position: absolute;
   opacity: 0;
-  bottom: 15%;
+  bottom: 10%;
   left: 50%;
   width: 20px;
   animation: strobo 2s ease-in-out 2s 3;
@@ -117,5 +113,18 @@ header {
   }
   100% {
     opacity: 70%;
+  }
+}
+
+@keyframes inputFocus {
+  0% {
+    opacity: 100%;
+  }
+  50% {
+    opacity: 80%;
+  }
+
+  100% {
+    opacity: 100%;
   }
 }
