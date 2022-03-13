@@ -17,18 +17,18 @@ function NameInput() {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <label>Scegli il nome del tuo personaggio</label>
+    <div className="form-name-container">
+      <form className="form-name" onSubmit={handleSubmit}>
+        <label className="label-name">Scegli il nome del tuo personaggio</label>
         <input
+          className="input-name"
           type="text"
           placeholder="Your Name"
           required
           value={name}
           onChange={(e) => setName(e.target.value)}
         ></input>
-        <button>Invia</button>
-        <p>{name}</p>
+        <button className="form-name-button">Invia</button>
       </form>
     </div>
   );

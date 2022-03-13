@@ -13,26 +13,11 @@ const Car = () => {
   return <primitive object={gltf.scene} dispose={null} />;
 };
 
-const HtmlContent = (user) => {
-  return (
-    <group position={[0, 0, 0]}>
-      <mesh position={[30, -5, 0]} scale={[12, 12, 12]}>
-        <Woman />
-      </mesh>
-      <mesh position={[35, 18 - 0]}>
-        <Html fullscreen>
-          <div className="container">
-            <h1 className="name">{user}</h1>
-          </div>
-        </Html>
-      </mesh>
-    </group>
-  );
-};
 const Woman = () => {
   const gltf = useGLTFLoader('/woman.gltf', true);
   return <primitive object={gltf.scene} dispose={null} />;
 };
+
 const Lights = () => {
   return (
     <>
@@ -50,6 +35,7 @@ export default function Canvas3d() {
 
   return (
     <>
+      <img className='icon3d' src="https://img.icons8.com/ios-glyphs/30/ffffff/3d-rotate.png" />
       <Canvas
         shadowMap
         colorManagement
