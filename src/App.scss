@@ -105,10 +105,10 @@ header {
 .icon3d {
   position: absolute;
   opacity: 0;
-  top: 10%;
-  left: 10%;
-  width: 15px;
-  animation: strobo 2s ease-in-out 2s infinite;
+  bottom: 15%;
+  left: 50%;
+  width: 20px;
+  animation: strobo 2s ease-in-out 2s 3;
 }
 
 @keyframes strobo {
@@ -116,6 +116,6 @@ header {
     opacity: 0;
   }
   100% {
-    opacity: 80%;
+    opacity: 70%;
   }
 }
