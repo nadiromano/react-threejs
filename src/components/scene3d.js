@@ -25,6 +25,7 @@ class Scene extends React.Component {
 
   componentDidMount() {
     const scene = new THREE.Scene();
+    const scene2 = new THREE.Scene();
 
     const camera = new THREE.PerspectiveCamera(
       75,
@@ -34,6 +35,8 @@ class Scene extends React.Component {
     );
 
     const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+    renderer.setClearColor(0x000000, 0); // the default
+
     renderer.setSize(window.innerWidth, window.innerHeight);
     const renderer2 = new CSS3DRenderer();
     renderer2.setSize(window.innerWidth, window.innerHeight);
@@ -44,13 +47,17 @@ class Scene extends React.Component {
     const light = new THREE.PointLight(0xffffff, 2, 200);
     light.position.set(4.5, 10, 4.5);
     const controls = new OrbitControls(camera, renderer.domElement);
+    const light2 = new THREE.PointLight(0xffffff, 2, 200);
+    light.position.set(4.5, 10, 4.5);
 
     scene.add(light);
+    scene2.add(light2);
 
     const cssElement = this.createCSS3DObject(string);
-    cssElement.position.z = 0;
+    cssElement.position.z = 9999;
+    cssElement.scale.set(3, 3, 3);
 
-    scene.add(cssElement);
+    scene2.add(cssElement);
 
     loader.load(
       './scene.gltf',
@@ -82,6 +89,7 @@ class Scene extends React.Component {
     camera.position.x = 0.3;
 
     this.scene = scene;
+    this.scene2 = scene2;
 
     this.camera = camera;
     this.renderer = renderer;
@@ -135,7 +143,7 @@ class Scene extends React.Component {
 
   renderScene() {
     this.renderer.render(this.scene, this.camera);
-    this.renderer2.render(this.scene, this.camera);
+    this.renderer2.render(this.scene2, this.camera);
   }
 
   render() {
