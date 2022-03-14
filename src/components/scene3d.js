@@ -11,7 +11,6 @@ let string =
   '<div>' +
   '<h1>This is an H1 Element.</h1>' +
   '<span class="large">Hello Three.js cookbook</span>' +
-  '<textarea> And this is a textarea</textarea>' +
   '</div>';
 
 class Scene extends React.Component {
@@ -26,7 +25,7 @@ class Scene extends React.Component {
 
   componentDidMount() {
     const scene = new THREE.Scene();
-    const scene2 = new THREE.Scene();
+
     const camera = new THREE.PerspectiveCamera(
       75,
       window.innerWidth / window.innerHeight,
@@ -39,9 +38,6 @@ class Scene extends React.Component {
     const renderer2 = new CSS3DRenderer();
     renderer2.setSize(window.innerWidth, window.innerHeight);
 
-    renderer.domElement.style.position = 'absolute';
-    renderer.domElement.style.top = 0;
-
     const loader = new GLTFLoader();
     const light = new THREE.PointLight(0xffffff, 2, 200);
     light.position.set(4.5, 10, 4.5);
@@ -50,8 +46,9 @@ class Scene extends React.Component {
     scene.add(light);
 
     const cssElement = this.createCSS3DObject(string);
-    cssElement.position.set(100, 100, 100 + 50);
-    scene2.add(cssElement);
+
+    cssElement.position.set(0, 0, -5);
+    scene.add(cssElement);
 
     loader.load(
       './scene.gltf',
@@ -85,7 +82,7 @@ class Scene extends React.Component {
     // renderer.setClearColor('#ffffff');
 
     this.scene = scene;
-    this.scene2 = scene2;
+
     this.camera = camera;
     this.renderer = renderer;
     this.renderer2 = renderer2;
@@ -120,10 +117,12 @@ class Scene extends React.Component {
     div.style.opacity = 1;
     div.style['will-change'] = 'all';
     div.style.transition = 'top 0.2s linear';
-    div.style.background = new THREE.Color(Math.random() * 0xffffff).getStyle();
+    div.style.overflow = 'visible';
+    div.style.textAlign = 'center';
 
     // create a CSS3Dobject and return it.
     var object = new CSS3DObject(div);
+    console.log(object);
     return object;
   }
 
@@ -139,13 +138,12 @@ class Scene extends React.Component {
 
   renderScene() {
     this.renderer.render(this.scene, this.camera);
-    this.renderer2.render(this.scene2, this.camera);
+    this.renderer2.render(this.scene, this.camera);
   }
 
   render() {
     return (
       <div
-        style={{ width: '400px', height: '400px' }}
         ref={(mount) => {
           this.mount = mount;
         }}
