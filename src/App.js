@@ -5,7 +5,6 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import NameInput from './components/inputName';
 import Canvas3d from './components/canvas3d';
 import Scene from './components/scene3d';
-import ThreeScene from './components/three-scene';
 
 export default function App() {
   return (

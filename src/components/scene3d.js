@@ -37,6 +37,8 @@ class Scene extends React.Component {
     renderer.setSize(window.innerWidth, window.innerHeight);
     const renderer2 = new CSS3DRenderer();
     renderer2.setSize(window.innerWidth, window.innerHeight);
+    renderer2.domElement.style.position = 'absolute';
+    renderer2.domElement.style.top = 0;
 
     const loader = new GLTFLoader();
     const light = new THREE.PointLight(0xffffff, 2, 200);
@@ -46,8 +48,8 @@ class Scene extends React.Component {
     scene.add(light);
 
     const cssElement = this.createCSS3DObject(string);
+    cssElement.position.z = 0;
 
-    cssElement.position.set(0, 0, -5);
     scene.add(cssElement);
 
     loader.load(
@@ -78,8 +80,6 @@ class Scene extends React.Component {
     camera.position.y = 0.13;
     camera.position.z = 0.5;
     camera.position.x = 0.3;
-    // scene.add(cube);
-    // renderer.setClearColor('#ffffff');
 
     this.scene = scene;
 
@@ -106,12 +106,10 @@ class Scene extends React.Component {
   }
 
   createCSS3DObject(s) {
-    // convert the string to dome elements
     var wrapper = document.createElement('div');
     wrapper.innerHTML = s;
     var div = wrapper.firstChild;
 
-    // set some values on the div to style it, standard CSS
     div.style.width = '375px';
     div.style.height = '375px';
     div.style.opacity = 1;
@@ -120,7 +118,6 @@ class Scene extends React.Component {
     div.style.overflow = 'visible';
     div.style.textAlign = 'center';
 
-    // create a CSS3Dobject and return it.
     var object = new CSS3DObject(div);
     console.log(object);
     return object;
